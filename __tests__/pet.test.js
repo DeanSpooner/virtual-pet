@@ -70,6 +70,24 @@ describe('walk', () => {
 
         expect(pet.fitness).toEqual(10);
     })
+});
 
+describe('feed', () => {
+    it('decreases the hunger of the pet by 3 if it has at least 3 hunger', () => {
+        const pet = new Pet('Danni');
 
+        pet.hunger = 8;
+
+        pet.feed();
+
+        expect(pet.hunger).toEqual(5);
+    })
+
+    it('only lets the hunger reach 0 at lowest', () => {
+        const pet = new Pet('Danni');
+
+        pet.feed();
+
+        expect(pet.hunger).toEqual(0);
+    })
 });

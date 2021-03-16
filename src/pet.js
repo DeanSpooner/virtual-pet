@@ -22,6 +22,14 @@ class Pet {
             this.fitness += 4;
         }
     }
+
+    feed() {
+        if (this.hunger - 3 <= 0) {
+            this.hunger = noHunger;
+        } else {
+            this.hunger -= 3;
+        }
+    }
 }
 
 
