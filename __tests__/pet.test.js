@@ -46,6 +46,30 @@ describe('growUp', () => {
 
         expect(pet.fitness).toEqual(7);
     })
+});
+
+describe('walk', () => {
+    it('increases the fitness of the pet by 4 if its current fitness is 5 or less', () => {
+        const pet = new Pet('Dixie');
+
+        pet.growUp();
+
+        pet.growUp();
+
+        pet.walk();
+
+        expect(pet.fitness).toEqual(8);
+    })
+
+    it('only lets the fitness reach a maximum of 10', () => {
+        const pet = new Pet('Dixie');
+
+        pet.growUp();
+
+        pet.walk();
+
+        expect(pet.fitness).toEqual(10);
+    })
 
 
 });
