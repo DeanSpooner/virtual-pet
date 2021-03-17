@@ -37,7 +37,7 @@ describe('growUp', () => {
         pet.growUp();
 
         expect(pet.age).toEqual(1);
-    })
+    });
 
     it('decreases fitness by 3 each time it runs', () => {
         const pet = new Pet('Dolly');
@@ -45,7 +45,16 @@ describe('growUp', () => {
         pet.growUp();
 
         expect(pet.fitness).toEqual(7);
-    })
+    });
+
+    it('returns that pet is not alive if not', () => {
+        const pet = new Pet('Danni');
+
+        pet.fitness = -1;
+
+
+        expect(() => pet.growUp()).toThrow('Your pet is no longer alive :(');
+    });
 });
 
 describe('walk', () => {
@@ -59,7 +68,7 @@ describe('walk', () => {
         pet.walk();
 
         expect(pet.fitness).toEqual(8);
-    })
+    });
 
     it('only lets the fitness reach a maximum of 10', () => {
         const pet = new Pet('Dixie');
@@ -69,7 +78,17 @@ describe('walk', () => {
         pet.walk();
 
         expect(pet.fitness).toEqual(10);
-    })
+    });
+
+
+    it('returns that pet is not alive if not', () => {
+        const pet = new Pet('Danni');
+
+        pet.fitness = -21;
+
+
+        expect(() => pet.walk()).toThrow('Your pet is no longer alive :(');
+    });
 });
 
 describe('feed', () => {
@@ -81,7 +100,7 @@ describe('feed', () => {
         pet.feed();
 
         expect(pet.hunger).toEqual(5);
-    })
+    });
 
     it('only lets the hunger reach 0 at lowest', () => {
         const pet = new Pet('Danni');
@@ -89,7 +108,17 @@ describe('feed', () => {
         pet.feed();
 
         expect(pet.hunger).toEqual(0);
-    })
+    });
+
+
+    it('returns that pet is not alive if not', () => {
+        const pet = new Pet('Danni');
+
+        pet.hunger = 31;
+
+
+        expect(() => pet.feed()).toThrow('Your pet is no longer alive :(');
+    });
 });
 
 describe('checkUp', () => {
@@ -113,7 +142,7 @@ describe('checkUp', () => {
     it('gives a message saying pet is hungry and needs a walk if they have hunger of 5 or more AND fitness of 3 or less', () => {
         const pet = new Pet('Danni');
 
-        pet.hunger = 78
+        pet.hunger = 7;
 
         pet.fitness = 1;
 
@@ -125,4 +154,49 @@ describe('checkUp', () => {
 
         expect(pet.checkUp()).toEqual('I feel great!');
     })
+
+    it('returns that pet is not alive if not', () => {
+        const pet = new Pet('Danni');
+
+        pet.fitness = -1;
+
+
+        expect(pet.checkUp()).toEqual('Your pet is no longer alive :(');
+    });
+});
+
+describe('isAlive', () => {
+    it('returns false if pet fitness is 0 or less', () => {
+        const pet = new Pet('Danni');
+
+        pet.fitness = -1;
+
+
+        expect(pet.isAlive).toEqual(false);
+    });
+
+    it('returns false if pet hunger is 10 or more', () => {
+        const pet = new Pet('Danni');
+
+        pet.hunger = 11;
+
+
+        expect(pet.isAlive).toEqual(false);
+    });
+
+    it('returns false if pet age is 30 or more', () => {
+        const pet = new Pet('Danni');
+
+        pet.age = 32;
+
+
+        expect(pet.isAlive).toEqual(false);
+    });
+
+    it('returns true otherwise', () => {
+        const pet = new Pet('Danni');
+
+
+        expect(pet.isAlive).toEqual(true);
+    });
 });
