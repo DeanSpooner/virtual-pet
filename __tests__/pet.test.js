@@ -16,7 +16,7 @@ describe('constructor', () => {
 
         expect(pet.age).toEqual(0);
     });
-    
+
     it("starts with a hunger of 0", () => {
         const pet = new Pet('Dixie');
 
@@ -198,5 +198,25 @@ describe('isAlive', () => {
 
 
         expect(pet.isAlive).toEqual(true);
+    });
+});
+
+describe('adoptChild', () => {
+    it('adopts another pet as a child in its array', () => {
+        const pet1 = new Pet('Danni');
+        const pet2 = new Pet('Dixie');
+        pet1.adoptChild(pet2)
+
+        expect(pet1.children[0].name).toEqual('Dixie');
+    });
+
+    it('alows grandchildren to be adopted as the child of a child', () => {
+        const pet1 = new Pet('Danni');
+        const pet2 = new Pet('Dixie');
+        const pet3 = new Pet('Dolly');
+        pet1.adoptChild(pet2);
+        pet2.adoptChild(pet3);
+
+        expect(pet1.children[0].children[0].name).toEqual('Dolly');
     });
 });

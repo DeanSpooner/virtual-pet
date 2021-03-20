@@ -7,6 +7,7 @@ class Pet {
         this.hunger = noHunger;
         this.fitness = maxFitness;
         this.name = name;
+        this.children = [];
     }
 
     get isAlive() {
@@ -19,6 +20,10 @@ class Pet {
             }
             return true;
         } */
+
+    adoptChild(child) {
+        this.children.push(child);
+    };
 
     growUp() {
         if (!this.isAlive) {
