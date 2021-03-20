@@ -31,6 +31,7 @@ class Pet {
         }
         this.age += 1;
         this.fitness -= 3;
+        this.hunger += 2;
     }
 
     walk() {
